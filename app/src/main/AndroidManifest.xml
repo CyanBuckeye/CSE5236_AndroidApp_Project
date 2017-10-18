@@ -19,7 +19,9 @@
         <activity android:name=".choosetopic" />
         <activity android:name=".fightactivity" />
         <activity android:name=".mapactivity" />
-        <activity android:name=".historyactivity"></activity>
+        <activity android:name=".historyactivity" />
+        <activity android:name=".Profile" />
+        <activity android:name=".Leaderboard"></activity>
     </application>
 
 </manifest>
