@@ -19,6 +19,7 @@ public class choosetopic extends AppCompatActivity implements SurfaceHolder.Call
     SurfaceHolder holder;
     Dot java;
     Dot python;
+    Dot linux;
 
     public Dot getJava(){
         return java;
@@ -27,6 +28,8 @@ public class choosetopic extends AppCompatActivity implements SurfaceHolder.Call
     public Dot getPython(){
         return python;
     }
+
+    public Dot getLinux() { return linux; }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,11 @@ public class choosetopic extends AppCompatActivity implements SurfaceHolder.Call
         y = getResources().getDisplayMetrics().widthPixels / 2;
         Position[0] = x; Position[1] = y;
         python = new Dot(this, Position, R.drawable.python);
+
+        x = getResources().getDisplayMetrics().heightPixels / 5;
+        y = getResources().getDisplayMetrics().widthPixels / 2;
+        Position[0] = x; Position[1] = y;
+        linux = new Dot(this, Position, R.drawable.linux);
         thread = new drawMapThread(this, holder, R.drawable.map);
         thread.start();
     }
@@ -101,7 +109,7 @@ public class choosetopic extends AppCompatActivity implements SurfaceHolder.Call
     public boolean onTouchEvent(MotionEvent event){
         int x = (int)event.getX();
         int y = (int)event.getY();
-        y -= 289;
+        //y -= 289;
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 if(x >= java.getX() && x <= java.getX() + java.getWidth() && y >= java.getY() && y <= java.getY() + java.getHeight())
@@ -116,6 +124,14 @@ public class choosetopic extends AppCompatActivity implements SurfaceHolder.Call
                         Intent intent = new Intent(this, fightactivity.class);
                         intent.putExtra("type", 0);
                         startActivity(intent);
+                    }
+                    else{
+                        if(x >= linux.getX() && x <= linux.getX() + linux.getWidth() && y >= linux.getY() && y <= linux.getY() + linux.getHeight())
+                        {
+                            Intent intent = new Intent(this, fightactivity.class);
+                            intent.putExtra("type", 2);
+                            startActivity(intent);
+                        }
                     }
                 }
             case MotionEvent.ACTION_MOVE:

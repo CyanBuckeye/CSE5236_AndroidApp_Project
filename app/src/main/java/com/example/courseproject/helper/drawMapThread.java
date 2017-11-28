@@ -16,6 +16,7 @@ import com.example.courseproject.choosetopic;
 public class drawMapThread extends Thread {
     Dot java;
     Dot python;
+    Dot linux;
     choosetopic act;
     SurfaceHolder holder;
     Canvas canvas;
@@ -29,6 +30,7 @@ public class drawMapThread extends Thread {
         running = true;
         this.java = act.getJava();
         this.python = act.getPython();
+        this.linux = act.getLinux();
         bg_picture = BitmapFactory.decodeResource(act.getResources(), id);
     }
 
@@ -46,6 +48,7 @@ public class drawMapThread extends Thread {
                     canvas.drawBitmap(bg_picture, 0, 0, p);
                     java.draw(canvas);
                     python.draw(canvas);
+                    linux.draw(canvas);
                 }
             }
             catch (Exception e){
