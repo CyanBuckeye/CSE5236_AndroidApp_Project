@@ -21,7 +21,7 @@ protected void lauchAnotherActivity(View view) {
 
 
 protected void onClick_profile(View view) {
-    Intent intent = new Intent(this, Profile.class);
+    Intent intent = new Intent(this, historyactivity.class);
     startActivity(intent);
 }
 
