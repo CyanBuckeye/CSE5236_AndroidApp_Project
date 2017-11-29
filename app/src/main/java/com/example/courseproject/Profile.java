@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 public class Profile extends Activity {
@@ -17,8 +18,10 @@ private ImageView imageView;
 public void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
 	setContentView(R.layout.activity_profile);
+	
 	this.imageView = (ImageView)this.findViewById(R.id.imageView1);
 	Button photoButton = (Button) this.findViewById(R.id.button1);
+	
 	photoButton.setOnClickListener(new View.OnClickListener() {
 		
 		@Override
