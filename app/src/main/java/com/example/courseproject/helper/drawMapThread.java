@@ -1,5 +1,7 @@
 package com.example.courseproject.helper;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -14,22 +16,22 @@ import com.example.courseproject.choosetopic;
 public class drawMapThread extends Thread {
     Dot java;
     Dot python;
+    Dot linux;
     choosetopic act;
     SurfaceHolder holder;
     Canvas canvas;
     Boolean running;
-    Paint paint;
+    Bitmap bg_picture;
+    Paint p;
 
-    public drawMapThread(choosetopic act, SurfaceHolder holder){
+    public drawMapThread(choosetopic act, SurfaceHolder holder, int id){
         this.act = act;
         this.holder = holder;
         running = true;
         this.java = act.getJava();
         this.python = act.getPython();
-
-        paint = new Paint();
-        paint.setColor(Color.CYAN);
-        paint.setStrokeWidth((float)15);
+        this.linux = act.getLinux();
+        bg_picture = BitmapFactory.decodeResource(act.getResources(), id);
     }
 
     public void setRunning(boolean b) {
@@ -42,9 +44,11 @@ public class drawMapThread extends Thread {
             try {
                 canvas = holder.lockCanvas();
                 synchronized (holder) {
+                    p=new Paint();
+                    canvas.drawBitmap(bg_picture, 0, 0, p);
                     java.draw(canvas);
                     python.draw(canvas);
-                    canvas.drawLine(java.getX() + java.width, java.getY() + java.height, python.getX(), python.getY(), paint);
+                    linux.draw(canvas);
                 }
             }
             catch (Exception e){
