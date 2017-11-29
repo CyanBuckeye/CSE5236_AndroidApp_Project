@@ -34,6 +34,21 @@ public class QuestionDB {
             {"String is immutable.", "String can be created using new operator.", "String is a primary data type.",
                     "None of the above."}
     };
+
+    static String[] LinuxQuestion_array = {"The dmesg command", "The command “mknod myfifo b 4 16”",
+    "Which command is used to set terminal IO characteristic?", "Which command is used to record a user login session in a file"};
+    static int[] LinuxAnswer_array = {3, 1, 4, 3};
+    static String[][] LinuxQuestion_choice = {{"Shows user login logoff attempts",
+            "Shows the syslog file for info messages",
+            "kernel log messages",
+            "Shows the daemon log messages"},
+            {"Will create a block device if user is root",
+             "Will create a block device for all users",
+             "Will create a FIFO if user is not root",
+             "None of the mentioned"},
+            {"tty", "ctty", "ptty", "stty"},
+            {"macro", "read", "script", "none of the mentioned"}
+};
     int type;
     public QuestionDB(int type){
         this.type = type;
@@ -52,26 +67,39 @@ public class QuestionDB {
         if(type == 0){
             return PythonQuestion_array[idx];
         }
-        else{
+        if(type == 1){
             return JavaQuestion_array[idx];
         }
+        if(type == 2){
+            return LinuxQuestion_array[idx];
+        }
+
+        return new String();
     }
 
     public String[] getChoices(int idx){
         if(type == 0){
             return PythonQuestion_choice[idx];
         }
-        else{
+        if(type == 1){
             return JavaQuestion_choice[idx];
         }
+        if(type == 2){
+            return LinuxQuestion_choice[idx];
+        }
+        return null;
     }
 
     public int getAnswer(int idx){
         if(type == 0){
             return PythonAnswer_array[idx];
         }
-        else{
+        if(type == 1){
             return JavaAnswer_array[idx];
         }
+        if(type == 2){
+            return LinuxAnswer_array[idx];
+        }
+        return -1;
     }
 }

@@ -1,7 +1,10 @@
 package com.example.courseproject;
 
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +17,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.example.courseproject.helper.HistoryBaseHelper;
+import com.example.courseproject.helper.HistoryDBSchema;
+import com.example.courseproject.helper.HistoryInfo;
 import com.example.courseproject.helper.QuestionDB;
 import com.example.courseproject.helper.drawThread;
 
@@ -32,6 +38,23 @@ public class fightactivity extends AppCompatActivity implements SurfaceHolder.Ca
     int thresh;
     QuestionDB db;
     List<Integer> li;
+    SQLiteDatabase historyDatabase;
+    Context mcontext;
+
+    private static ContentValues getContentValues(HistoryInfo info){
+        ContentValues values = new ContentValues();
+        //values.put(HistoryDBSchema.HistoryTable.Cols.HISID, info.curr_time);
+        values.put(HistoryDBSchema.HistoryTable.Cols.username, info.username);
+        values.put(HistoryDBSchema.HistoryTable.Cols.subject, info.subject);
+        values.put(HistoryDBSchema.HistoryTable.Cols.score, info.score);
+        values.put(HistoryDBSchema.HistoryTable.Cols.timecost, info.timecost);
+        return values;
+    }
+
+    public void insertHistory(HistoryInfo info){
+        ContentValues values = getContentValues(info);
+        historyDatabase.insert(HistoryDBSchema.HistoryTable.NAME, null, values);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +66,8 @@ public class fightactivity extends AppCompatActivity implements SurfaceHolder.Ca
         thresh = 2;
         score = 0;
 
+        mcontext = getApplicationContext();
+        historyDatabase = new HistoryBaseHelper(mcontext).getWritableDatabase();
         v = findViewById(R.id.surfv);
         holder = v.getHolder();
         LinearLayout q_layout = findViewById(R.id.question_layout);
@@ -75,6 +100,21 @@ public class fightactivity extends AppCompatActivity implements SurfaceHolder.Ca
 
     public void OnClick(View view){
         int selected = group.getCheckedRadioButtonId();
+        if(selected == R.id.first)
+            selected = 1;
+        else{
+            if(selected == R.id.second)
+                selected = 2;
+            else{
+                if(selected == R.id.third)
+                    selected = 3;
+                else
+                    if(selected == R.id.forth)
+                        selected = 4;
+                    else
+                        selected = 0;
+            }
+        }
         if(selected == curr_key) {
             score++;
             //    scoreview.setText("score: " + Integer.toString(score));
@@ -113,6 +153,21 @@ public class fightactivity extends AppCompatActivity implements SurfaceHolder.Ca
         }
     }
 
+    private void storeData(){
+        TextView temp_v = findViewById(R.id.time);
+        int timecost = (int)Double.parseDouble((String)temp_v.getText());
+        HistoryInfo storeInfo = new HistoryInfo();
+        storeInfo.username = "Tom";
+        storeInfo.timecost = timecost;
+        if(type == 1)
+            storeInfo.subject = "Java";
+        else
+            storeInfo.subject = "Python";
+        storeInfo.score = score;
+        insertHistory(storeInfo);
+        historyDatabase.close();
+    }
+
     private void judge(Boolean input){
         TextView temp_v = findViewById(R.id.time);
         String info = (String)temp_v.getText();
@@ -127,6 +182,7 @@ public class fightactivity extends AppCompatActivity implements SurfaceHolder.Ca
                                 public void onClick(DialogInterface dialog,
                                                     int which) {
                                     // TODO Auto-generated method stub
+                                    storeData();
                                     finish();
                                 }
                             }).create()
@@ -142,6 +198,7 @@ public class fightactivity extends AppCompatActivity implements SurfaceHolder.Ca
                                 public void onClick(DialogInterface dialog,
                                                     int which) {
                                     // TODO Auto-generated method stub
+                                    storeData();
                                     finish();
                                 }
                             }).create()

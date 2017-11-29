@@ -34,7 +34,7 @@ public void onDestroy(){
 }
 
 protected void onClick_goback(View view){
-	Intent intent = new Intent(this, UserMainFieldActivity.class);
+	Intent intent = new Intent(this, MainActivity.class);
 	startActivity(intent);
 }
 }

@@ -1,5 +1,6 @@
 package com.example.courseproject.helper;
 
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 import android.widget.TextView;
@@ -36,6 +37,7 @@ public class drawThread extends Thread {
             try {
                 canvas = holder.lockCanvas();
                 synchronized (holder) {
+                    canvas.drawBitmap(BitmapFactory.decodeResource(act.getResources(), R.drawable.background),0,0,null);
                     mon.draw(canvas);
                     fig.draw(canvas);
                 }
@@ -46,7 +48,7 @@ public class drawThread extends Thread {
                 double time_elapsed = curr_time / 1000;
                 TextView v = act.findViewById(R.id.time);
                 v.setText(String.valueOf(time_elapsed));
-                if(time_elapsed >= 25) {
+                if(time_elapsed >= 50) {
                     running = false;
                     fig.setBitmap(R.drawable.zombie);
                     break;
