@@ -17,6 +17,8 @@ import com.example.courseproject.choosetopic;
  * Created by andrew on 11/4/17.
  */
 public class Dot{
+
+    Paint paint;
     Bitmap icon;
     int width;
     int height;
@@ -45,6 +47,10 @@ public class Dot{
         this.height = icon.getHeight() / 8;
         Log.d("get height", Integer.toString(height));
         this.icon = Bitmap.createScaledBitmap(this.icon, this.width, this.height, false);
+        paint = new Paint();
+        paint.setColor(Color.BLACK);
+        paint.setStrokeWidth(5);
+        paint.setStyle( Paint.Style.STROKE );
     }
 
     void draw(Canvas canvas){
@@ -53,5 +59,6 @@ public class Dot{
         Rect dst = new Rect();
         dst.set(x, y, x + this.width, y + this.height);
         canvas.drawBitmap(this.icon, src, dst, null);
+        canvas.drawRect(x, y, x + this.width, y + this.height, paint);
     }
 }

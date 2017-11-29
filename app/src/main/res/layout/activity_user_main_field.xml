@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.courseproject.UserMainFieldActivity">
+
+    <LinearLayout
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:orientation="vertical"
+        android:background="#397367">
+    <Button
+        android:id="@+id/button4"
+        android:text="Campaign"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_marginLeft="75dp"
+        android:layout_marginRight="75dp"
+        android:layout_marginTop="200dp"
+        android:background="#35393C"
+        android:textColor="@android:color/white"
+        android:layout_gravity="center"
+        android:onClick="lauchAnotherActivity" />
+
+    <Button
+        android:id="@+id/profileButton"
+        android:text="Profile"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_marginLeft="75dp"
+        android:layout_marginRight="75dp"
+        android:layout_marginTop="25dp"
+        android:background="#35393C"
+        android:textColor="@android:color/white"
+        android:layout_gravity="center"
+        android:onClick="onClick_profile"
+         />
+
+    <Button
+        android:id="@+id/leaderButton"
+        android:text="Leaderboard"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="75dp"
+        android:layout_marginRight="75dp"
+        android:layout_marginTop="25dp"
+        android:background="#35393C"
+        android:textColor="@android:color/white"
+        android:layout_gravity="center"
+        android:onClick="onClick_leaderboard"
+         />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <LinearLayout
-            android:layout_weight="8"
+            android:layout_weight="4"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:id="@+id/view_linearout"
@@ -22,39 +22,33 @@
         </LinearLayout>
         <LinearLayout
             android:orientation="vertical"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:id="@+id/question_layout"
-            android:background="@drawable/battle">
+            android:id="@+id/question_layout">
             <TextView
                 android:layout_weight="6"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/question_text"
-                android:textColor="#ffffff"/>
+                android:id="@+id/question_text" />
             <RadioGroup
                 android:layout_weight="3"
                 android:id="@+id/rgroup"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content">
                 <RadioButton
-                    android:textColor="#ffffff"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/first"/>
                 <RadioButton
-                    android:textColor="#ffffff"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/second"/>
                 <RadioButton
-                    android:textColor="#ffffff"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/third"/>
                 <RadioButton
-                    android:textColor="#ffffff"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/forth"/>
@@ -70,23 +64,14 @@
                     android:layout_weight="1" />
                 <TextView
                     android:id="@+id/time"
-                    android:textStyle="bold"
-                    android:textColor="#ffffff"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"/>
             </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_weight="8"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
             <Button
                 android:layout_weight="2"
-                android:background="@drawable/background"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
                 android:onClick="OnClick"
                 android:text="comfirm"/>
         </LinearLayout>
